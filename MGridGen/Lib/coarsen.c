@@ -39,7 +39,7 @@ GraphType *Coarsen(CtrlType *ctrl, GraphType *graph)
         Match_HEM_True(ctrl, cgraph);
         break;
       default:
-        errexit("Unknown CType: %d\n", ctrl->CType);
+        errexit2("Unknown CType: %d\n", ctrl->CType);
     }
 
     j++;

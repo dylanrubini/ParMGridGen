@@ -163,7 +163,7 @@ double *ReadTestCoordinates(MGridGraphType *graph, char *filename, int ndims, MP
   if (mype == 0) {
     sprintf(xyzfile, "%s.xyz", filename);
     if ((fpin = fopen(xyzfile, "r")) == NULL)
-      errexit("Failed to open file %s\n", xyzfile);
+      errexit2("Failed to open file %s\n", xyzfile);
   }
 
   if (mype == 0) {
@@ -234,7 +234,7 @@ void ReadMGridGraph(char *filename, int *r_nvtxs, idxtype **r_xadj, idxtype **r_
       fgets(line, MAXLINE, fpin);
     } while (line[0] == '%' && !feof(fpin));
     if (strlen(line) == MAXLINE)
-      errexit("\nBuffer for fgets not big enough!\n");
+      errexit2("\nBuffer for fgets not big enough!\n");
 
 
     /* Parse the string and get the arguments */
@@ -254,7 +254,7 @@ void ReadMGridGraph(char *filename, int *r_nvtxs, idxtype **r_xadj, idxtype **r_
   fclose(fpin);
 
   if (k != nedges)
-    errexit("ReadMGridGraph: Something wrong with the edges from input file %d %d", nedges, k);
+    errexit2("ReadMGridGraph: Something wrong with the edges from input file %d %d", nedges, k);
 
   *r_nvtxs = nvtxs;
   *r_xadj = xadj;
@@ -268,7 +268,7 @@ void ReadMGridGraph(char *filename, int *r_nvtxs, idxtype **r_xadj, idxtype **r_
 * This function writes out the partition vector locallly
 **************************************************************************/
 void WriteParallelPartition(char *fname, idxtype *part, idxtype *vtxdist, int nparts,
-                            int mype, int npes)
+                            int mype, int npes, char *lvl)
 {
   int i,n;
   char filename[256];
@@ -276,11 +276,15 @@ void WriteParallelPartition(char *fname, idxtype *part, idxtype *vtxdist, int np
 
   n = vtxdist[mype+1] - vtxdist[mype];
 
-  sprintf(filename,"%s.part%d-%d.%d",fname, npes, mype, nparts);
+  sprintf(filename,"%s_%s_part%d-%d",fname, lvl, npes, mype);
 
   if ((fpout = fopen(filename, "w")) == NULL)
-    errexit("Problems in opening the partition file: %s", filename);
+    errexit2("Problems in opening the partition file: %s", filename);
 
+  fprintf(fpout,"LOCAL nparts on processor %d is %s \n", mype, lvl);
+  fprintf(fpout,"%d\n",n);  
+  fprintf(fpout,"%d\n",nparts);
+  fprintf(fpout,"**************************************\n");  
   for (i=0; i<n; i++)
      fprintf(fpout,"%d\n",part[i]);
 

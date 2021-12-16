@@ -21,6 +21,7 @@ int main(int argc, char *argv[])
   int minsize, maxsize;
   int options[10];
   char filename[15];
+  char level[15];  
 
   MPI_Init(&argc, &argv);
   MPI_Comm_dup(MPI_COMM_WORLD, &comm);
@@ -30,7 +31,7 @@ int main(int argc, char *argv[])
   sprintf(filename,"OUTPUT%d.%d",npes,mype);
   freopen(filename, "a", stdout);
 
-  if (argc != 8) {
+  if (argc != 9) {
     if (mype == 0) {
       printf("Usage: %s <GraphFile> <Dim> <CType> <RType> <minsize> <maxsize> <dbglvl>\n", argv[0]);
       printf("Where:\n");
@@ -58,13 +59,14 @@ int main(int argc, char *argv[])
     exit(0);
   }
 
+  strcpy(level, argv[8]);  
   options[OPTION_DIM] = atoi(argv[2]);
   options[OPTION_CTYPE] = atoi(argv[3]);
   options[OPTION_RTYPE] = atoi(argv[4]);
   minsize = atoi(argv[5]);
   maxsize = atoi(argv[6]);
   options[OPTION_DBGLVL] = atoi(argv[7]);
-  TestParMGridGen(argv[1], options, minsize, maxsize, comm); 
+  TestParMGridGen(argv[1], options, minsize, maxsize, comm, level); 
 
   MPI_Comm_free(&comm);
 

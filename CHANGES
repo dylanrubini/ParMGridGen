@@ -1,0 +1,13 @@
+IMPORTANT NOTE From Dylan Rubini:
+
+in MGridGen the errexit utility function has been replaced with
+errexit2 to prevent multiple definitions errors when linked 
+with metis libary
+
+- Additional changes should be seem in git history
+
+- output files names changed for stand-alone program 
+
+- extra command line variables addeed for mgrid levels 
+
+- extra lines in output coarse grid graph file

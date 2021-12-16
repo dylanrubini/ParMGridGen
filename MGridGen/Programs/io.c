@@ -52,7 +52,7 @@ void ReadGraph(GraphType *graph, char *filename)
        fgets(line, MAXLINE, fpin);
      } while (line[0] == '%' && !feof(fpin));
      if (strlen(line) == MAXLINE) 
-       errexit("\nBuffer for fgets not big enough!\n");
+       errexit2("\nBuffer for fgets not big enough!\n");
 
      /* Parse the string and get the arguments */
      token = strtok(line, delim);
@@ -71,7 +71,7 @@ void ReadGraph(GraphType *graph, char *filename)
   fclose(fpin);
 
   if (k != nedges)
-    errexit("ReadGraph: Something wrong with the edges from input file %d %d",
+    errexit2("ReadGraph: Something wrong with the edges from input file %d %d",
             nedges, k);
 }
 
@@ -119,7 +119,7 @@ void TransformGraph(char *filename)
        fgets(line, MAXLINE, fpin);
      } while (line[0] == '%' && !feof(fpin));
      if (strlen(line) == MAXLINE) 
-       errexit("\nBuffer for fgets not big enough!\n");
+       errexit2("\nBuffer for fgets not big enough!\n");
 
      /* Parse the string and get the arguments */
      token = strtok(line, delim);
@@ -145,17 +145,20 @@ void TransformGraph(char *filename)
 /*************************************************************************
 * This function writes out the partition vector
 **************************************************************************/
-void WritePartition(char *fname, idxtype *part, int n, int nparts)
+void WritePartition(char *fname, idxtype *part, int n, int nparts, char *lvl)
 {
   int i;
   char filename[256];
   FILE *fpout;
 
-  sprintf(filename,"%s.part.%d",fname, nparts);
+  sprintf(filename,"%s_%s_part",fname,lvl);
 
   if ((fpout = fopen(filename, "w")) == NULL) 
-    errexit("Problems in opening the partition file: %s", filename);
+    errexit2("Problems in opening the partition file: %s", filename);
 
+  fprintf(fpout,"nparts in %s \n", lvl);
+  fprintf(fpout,"%d\n",nparts);
+  fprintf(fpout,"*******\n");  
   for (i=0; i<n; i++)
      fprintf(fpout,"%d\n",part[i]);
 

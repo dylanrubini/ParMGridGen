@@ -72,7 +72,7 @@
 #define PrintTimer ___PrintTimer
 
 /* util.c */
-#define errexit ___errexit
+#define errexit2 ___errexit2
 #define myprintf ___myprintf
 #define rprintf ___rprintf
 #ifndef DMALLOC

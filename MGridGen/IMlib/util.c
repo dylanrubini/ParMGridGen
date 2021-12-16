@@ -14,7 +14,7 @@
 /*************************************************************************
 * This function prints an error message and exits
 **************************************************************************/
-void *errexit(char *f_str,...)
+void *errexit2(char *f_str,...)
 {
   va_list argp;
 

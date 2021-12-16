@@ -51,7 +51,7 @@ void RefineKWay(CtrlType *ctrl, GraphType *orggraph, GraphType *graph, int npass
          Random_KWayMultiObjRefine2(ctrl, graph, npasses);
          break;
        default:
-         errexit("Unknown RType of %d\n", ctrl->RType);
+         errexit2("Unknown RType of %d\n", ctrl->RType);
      }
 
      if (graph == orggraph) 
@@ -155,7 +155,7 @@ void RefineKWayOnce(CtrlType *ctrl, GraphType *graph, int npasses)
       Random_KWayMultiObjRefine2(ctrl, graph, npasses); 
       break;
     default:
-      errexit("Unknown RType of %d\n", ctrl->RType);
+      errexit2("Unknown RType of %d\n", ctrl->RType);
   }
 
   BreakComponents(ctrl, graph);
@@ -423,7 +423,7 @@ realtype ComputeFunction(int RType, CtrlType *ctrl, GraphType *graph)
       }
       break;
     default:
-      errexit("Unknown RType of %d\n", ctrl->RType);
+      errexit2("Unknown RType of %d\n", ctrl->RType);
   }
 
   return(ratio);

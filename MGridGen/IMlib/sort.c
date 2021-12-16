@@ -102,7 +102,7 @@ int BSearch(int n, idxtype *array, int key)
       return c;
   }
 
-  errexit("Key %d not found!\n", key);
+  errexit2("Key %d not found!\n", key);
   return -1;
 }
 

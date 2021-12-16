@@ -1,45 +1,56 @@
 #--------------------------------------------------------------------------
-# Which make to use
+# Which make to use 
 make = make
+
+MAKEFILES_DIR := $(OP2_HOME_DIR)/makefiles
+
+ifdef OP2_COMPILER
+  OP2_C_COMPILER ?= $(OP2_COMPILER)
+endif
+
+ifdef OP2_C_COMPILER
+  include $(MAKEFILES_DIR)/compilers/c/$(OP2_C_COMPILER).mk
+else
+  $(warning OP2_C_COMPILER undefined: define or use OP2_COMPILER or OP2_PROFILE)
+endif
 
 # Which compiler to use
 #  CC is the compiler for the serial code
 #  PARCC is the compiter for the parallel code
-CC = clang
-PARCC = $(shell which mpicc)
+# CC = gcc
+PARCC = mpicc
 
 # What optimization level to use
 OPTFLAGS = -O3
 
 # What options to be used by the compiler
-COPTIONS =
+COPTIONS = -fPIC
 
 # Which loader to use
-LD = clang
-PARLD = $(shell which mpicc)
+LD = ${CC}
+PARLD = mpicc
 
 # What options to be used by the loader
-LDOPTIONS = -O3
+LDOPTIONS = -O3 -fPIC
 
-# Where to put the executable
-BINDIR = ../../bin
+# Where to put the executable 
+BINDIR = ../..
 
 # Additional libraries
 DMALLOCDIR =
 IMLIBDIR = ../../MGridGen/IMlib
 
 # Include directories for the compiler
-INCDIR =
 
 # In which directories to look for any additional libraries
-LIBDIR = -L../.. $(patsubst %,-L%,$(shell $(PARCC) --showme:libdirs))
+LIBDIR  = -L../..
 
 # Set some flags
-DEBUGFLAGS =
+DEBUGFLAGS = -g
 
 # What additional libraries to link the programs with (eg., -lmpi)
-LIBS = -lmgrid -lm
-PARLIBS = -lparmgrid -lmgrid -l$(shell $(PARCC) --showme:libs) -lm
+LIBS = -L../.. -lmgrid -lm
+PARLIBS = -L../.. -lparmgrid -lmgrid  -lm
 
 
 # What archiving to use
@@ -50,7 +61,7 @@ AR = ar rv
 RANLIB = ar -ts
 
 #--------------------------------------------------------------------------
-#
+# 
 # Do not change any of the following
 #
 VERNUM = 1.0

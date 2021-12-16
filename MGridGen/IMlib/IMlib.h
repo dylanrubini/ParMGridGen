@@ -245,7 +245,7 @@ void IMfree(void **, ...);
 /*-------------------------------------------------------------
  * util.c
  *-------------------------------------------------------------*/
-void *errexit(char *,...);
+void *errexit2(char *,...);
 int IMlog2(int);
 double flog2(double);
 int ispow2(int);

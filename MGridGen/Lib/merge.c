@@ -65,7 +65,7 @@ void Merge(CtrlType *ctrl, GraphType *graph, int npasses)
           Merge_MultiObj(ctrl, graph);
           break;
         default:
-          errexit("Unknown RType of %d\n", ctrl->RType);
+          errexit2("Unknown RType of %d\n", ctrl->RType);
       }
 
       if (graph->nmoves == 0)
@@ -103,7 +103,7 @@ void Contribute(CtrlType *ctrl, GraphType *graph, int npasses)
           Contribute_MultiObj(ctrl, graph);
           break;
         default:
-          errexit("Unknown RType of %d\n", ctrl->RType);
+          errexit2("Unknown RType of %d\n", ctrl->RType);
       }
 
       if (graph->nmoves == -1)

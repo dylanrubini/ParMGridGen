@@ -121,7 +121,7 @@ void *IMmalloc(int nbytes, char *msg)
 
   ptr = (void *)malloc(nbytes);
   if (ptr == NULL) 
-    errexit("***Memory allocation failed for %s. Requested size: %d bytes", msg, nbytes);
+    errexit2("***Memory allocation failed for %s. Requested size: %d bytes", msg, nbytes);
 
   return ptr;
 }

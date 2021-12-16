@@ -20,9 +20,10 @@ int main(int argc, char *argv[])
   idxtype *part;
   GraphType graph;
   char filename[256];
+  char level[256];  
   double tmr;
 
-  if (argc != 8) {
+  if (argc != 9) {
     printf("Usage: %s <GraphFile> <Dim> <CType> <RType> <minsize> <maxsize> <dbglvl>\n", argv[0]);
     printf("Where:\n");
     printf("\tDim:    \t2 -> 2-D Mesh\n");
@@ -47,6 +48,7 @@ int main(int argc, char *argv[])
   }
 
   strcpy(filename, argv[1]);
+  strcpy(level, argv[8]);  
   options[OPTION_DIM] = atoi(argv[2]);
   options[OPTION_CTYPE] = atoi(argv[3]);
   options[OPTION_RTYPE] = atoi(argv[4]);
@@ -70,7 +72,7 @@ int main(int argc, char *argv[])
   stoptimer(tmr);
   printf("Total Time: %lf\n", gettimer(tmr));
 
-  WritePartition(filename, part, graph.nvtxs, nparts);
+  WritePartition(filename, part, graph.nvtxs, nparts, level);
 
   IMfree((void**)&graph.xadj, &graph.vvol, &graph.vsurf, &graph.adjncy, &graph.adjwgt, &part, LTERM);
 

@@ -81,12 +81,12 @@ void MGridrprintf(MGridCtrlType *, char *f_str,...);
 
 
 /* parmgridgen.c */
-void TestParMGridGen(char *, int *, int, int, MPI_Comm);
+void TestParMGridGen(char *, int *, int, int, MPI_Comm, char *);
 
 
 /* tio.c */
 void MGridReadTestGraph(MGridGraphType *, char *, MPI_Comm);
 double *ReadTestCoordinates(MGridGraphType *, char *, int, MPI_Comm);
 void ReadMGridGraph(char *, int *, idxtype **, idxtype **, realtype **, realtype **, realtype **);
-void WriteParallelPartition(char *, idxtype *, idxtype *, int, int, int);  
+void WriteParallelPartition(char *, idxtype *, idxtype *, int, int, int, char *);  
 

@@ -92,7 +92,7 @@ void PrintTimer(CtrlType *, timer, char *);
 
 
 /* util.c */
-void errexit(char *,...);
+void errexit2(char *,...);
 void myprintf(CtrlType *, char *f_str,...);
 void rprintf(CtrlType *, char *f_str,...);
 #ifndef DMALLOC

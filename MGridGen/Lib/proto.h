@@ -19,7 +19,7 @@ GraphType *SetUpCoarseGraph(GraphType *, int);
 /* io.c */
 void ReadGraph(GraphType *, char *);
 void TransformGraph(char *);
-void WritePartition(char *, idxtype *, int, int);
+void WritePartition(char *, idxtype *, int, int, char *);
 void PrintGraph(GraphType *);
 
 

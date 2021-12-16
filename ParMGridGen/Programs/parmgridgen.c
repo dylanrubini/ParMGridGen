@@ -18,7 +18,7 @@ void MGridGen(int, idxtype *, realtype *, realtype *, idxtype *, realtype *,
 * It computes a partition from scratch, it then moves the graph and changes some
 * of the vertex weights and then call the adaptive code.
 ************************************************************************************/
-void TestParMGridGen(char *filename, int *options, int minsize, int maxsize, MPI_Comm comm)
+void TestParMGridGen(char *filename, int *options, int minsize, int maxsize, MPI_Comm comm, char *level)
 {
   int i, nparts, npes, mype;
   MGridGraphType graph;
@@ -54,7 +54,7 @@ void TestParMGridGen(char *filename, int *options, int minsize, int maxsize, MPI
 
   printf("Total Time = %lf\n", gettimer(tmr));
 
-  WriteParallelPartition(filename, part, graph.vtxdist, nparts, mype, npes);
+  WriteParallelPartition(filename, part, graph.vtxdist, nparts, mype, npes, level);
 
   IMfree((void**)&graph.vtxdist, &graph.xadj, &graph.vvol, &graph.vsurf, &graph.vwgt,
          &graph.adjncy, &graph.adjwgt, &part, LTERM);

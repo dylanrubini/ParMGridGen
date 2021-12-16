@@ -14,7 +14,7 @@
 /*************************************************************************
 * This function prints an error message and exits
 **************************************************************************/
-void errexit(char *f_str,...)
+void errexit2(char *f_str,...)
 {
   va_list argp;
   char out1[256], out2[256];
@@ -384,7 +384,7 @@ int BSearch(int n, idxtype *array, int key)
       return c;
   }
 
-  errexit("Key %d not found!\n", key);
+  errexit2("Key %d not found!\n", key);
   return 0;
 }
 
