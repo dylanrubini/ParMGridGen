@@ -21,7 +21,12 @@ elif [[ $OP2_F_COMPILER == 'nvhpc'  ]]; then
 	FC=nvfortran cmake ..  $MGRID_LIB $INSTALL_PATH  -DINT=32 -DREAL=64
 fi
 
-make install
-cd ..
+if [[ $? -eq 0 ]]; then 
+	make install
+	cd ..
+else 
+    cd ..	
+	return 	
+fi
 
 rm -r build/
