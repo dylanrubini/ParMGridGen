@@ -5,12 +5,25 @@ set -e
 make clean
 make realclean
 
-make
+if [[ $? -eq 0 ]]; then 
+	make  
+else 
+	return 	
+fi
 
-make parallel
+if [[ $? -eq 0 ]]; then 
+	make parallel
+else 
+	return 	
+fi
 
-cd FortInterface
 
-./build.sh
+if [[ $? -eq 0 ]]; then 
+	cd FortInterface
 
-cd ..
+	./build.sh
+
+	cd .. 
+else 
+	return 	
+fi
