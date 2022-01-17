@@ -9,14 +9,14 @@ if [[ $? -eq 0 ]]; then
 	make  
 else 
     cd ..	
-	return 	
+	(exit 33) 	
 fi
 
 if [[ $? -eq 0 ]]; then 
 	make parallel
 else 
     cd ..	
-	return 	
+	(exit 33) 	
 fi
 
 
@@ -28,5 +28,5 @@ if [[ $? -eq 0 ]]; then
 	cd .. 
 else 
     cd ..	
-	return 	
+	(exit 33) 	
 fi

@@ -10,8 +10,8 @@ cd build
 
 make clean
 
-INSTALL_PATH="-DCMAKE_INSTALL_PREFIX="${UTBLOCK_DIR}/ParMGridGen/FortInterface/lib/""
-MGRID_LIB="-DMGRIDGEN_LIB="/datapart1/UTBLOCK-OP2/ParMGridGen/libmgrid.a"" 
+INSTALL_PATH="-DCMAKE_INSTALL_PREFIX="${UTBLOCK_DIR}/third-party/ParMGridGen/FortInterface/lib/""
+MGRID_LIB="-DMGRIDGEN_LIB="${UTBLOCK_DIR}/third-party/ParMGridGen/libmgrid.a"" 
 
 if [[ $OP2_F_COMPILER == 'gnu' ]]; then
 	FC=gfortran   cmake .. $MGRID_LIB $INSTALL_PATH -DINT=32 -DREAL=64
@@ -26,7 +26,7 @@ if [[ $? -eq 0 ]]; then
 	cd ..
 else 
     cd ..	
-	return 	
+	(exit 33) 	
 fi
 
 rm -r build/
