@@ -19,6 +19,8 @@ elif [[ $OP2_F_COMPILER == 'intel'  ]]; then
 	FC=ifort     cmake ..  $MGRID_LIB $INSTALL_PATH  -DINT=32 -DREAL=64
 elif [[ $OP2_F_COMPILER == 'nvhpc'  ]]; then
 	FC=nvfortran cmake ..  $MGRID_LIB $INSTALL_PATH  -DINT=32 -DREAL=64
+elif [[ $OP2_F_COMPILER == 'pgi'  ]]; then
+	FC=pgfortran cmake ..  $MGRID_LIB $INSTALL_PATH  -DINT=32 -DREAL=64	
 fi
 
 if [[ $? -eq 0 ]]; then 
